@@ -40,6 +40,19 @@ router.post('/', (req, res, next) => {
         });
 });
 
+router.patch('/:id', (req, res, next) => {
+    const { id, title, description, price, item_image } = req.body;
+    knex('classifieds')
+        .update({ id, title, description, price, item_image }, ["id", "title", "description", "price", "item_image"])
+        .where("id", id)
+        .then((data) => {
+            res.send(data[0]);
+        })
+        .catch((err) => {
+            res.send(err);
+        });
+});
+
 
 
 
