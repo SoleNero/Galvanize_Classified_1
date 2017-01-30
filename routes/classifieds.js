@@ -28,6 +28,18 @@ router.get('/:id', (req, res, next) => {
         });
 });
 
+router.post('/', (req, res, next) => {
+    const { id, title, description, price, item_image } = req.body;
+    knex('classifieds')
+        .insert({ id, title, description, price, item_image }, ["id", "title", "description", "price", "item_image"])
+        .then((data) => {
+            res.send(data[0]);
+        })
+        .catch((err) => {
+            res.send(err);
+        });
+});
+
 
 
 
