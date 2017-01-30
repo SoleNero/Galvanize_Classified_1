@@ -15,6 +15,19 @@ router.get('/', (req, res, next) => {
         });
 });
 
+router.get('/:id', (req, res, next) => {
+    const id = req.params.id;
+    knex('classifieds')
+        .select('id', 'title', 'description', 'price', 'item_image')
+        .where('id', id)
+        .then((data) => {
+            res.send(data[0]);
+        })
+        .catch((err) => {
+            res.send(err);
+        });
+});
+
 
 
 
