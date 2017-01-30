@@ -6,8 +6,7 @@
     "scripts": {
         "start": "node server.js",
         "test": "mocha",
-        "heroku-prebuild": "echo This runs before Heroku installs your dependencies.",
-        "heroku-postbuild": "echo This runs afterwards."
+        "heroku-postbuild": "knex migrate:latest"
     },
     "keywords": [],
     "author": "",
