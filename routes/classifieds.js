@@ -53,6 +53,20 @@ router.patch('/:id', (req, res, next) => {
         });
 });
 
+router.delete('/:id', (req, res, next) => {
+    const id = req.params.id;
+    knex("classifieds")
+        .where("id", id)
+        .del()
+        .returning(["id", "title", "description", "price", "item_image"])
+        .then((data) => {
+            res.send(data[0]);
+        })
+        .catch((err) => {
+            res.send(err);
+        });
+});
+
 
 
 
